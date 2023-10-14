@@ -74,7 +74,10 @@ class _DiaryCreateEditPageState extends State<DiaryCreateEditPage> {
                 });
               }
             },
-            child: Text('Pick date'),
+            child: Text('日付を選択する'),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.blue[800],
+            ),
           ),
           TextField(
             controller: contentController,
@@ -85,7 +88,7 @@ class _DiaryCreateEditPageState extends State<DiaryCreateEditPage> {
               saveDiary();
               Navigator.pop(context);
             },
-            child: Text('Save'),
+            child: Text('保存する'),
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.blue[800],
             ),
