@@ -1,6 +1,7 @@
 import 'package:alcohol_sanitizing_sheet/src/helper.dart/db_helper.dart';
 import 'package:flutter/material.dart';
 import 'diary.dart'; // Import your Diary model
+import 'package:intl/intl.dart';
 
 class DiaryCreateEditPage extends StatefulWidget {
   final Diary? diary;
@@ -14,6 +15,7 @@ class DiaryCreateEditPage extends StatefulWidget {
 class _DiaryCreateEditPageState extends State<DiaryCreateEditPage> {
   TextEditingController contentController = TextEditingController();
   DateTime _date = DateTime.now();
+  final formatter = DateFormat('yyyy年MM月dd日', 'ja_JP');
 
   @override
   void initState() {
@@ -41,6 +43,20 @@ class _DiaryCreateEditPageState extends State<DiaryCreateEditPage> {
         date: _date,
       );
       await DBHelper.updateDiary(updatedDiary);
+    }
+  }
+
+  void _selectDate() async {
+    final DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: _date,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+    if (pickedDate != null && pickedDate != _date) {
+      setState(() {
+        _date = pickedDate;
+      });
     }
   }
 
@@ -79,9 +95,14 @@ class _DiaryCreateEditPageState extends State<DiaryCreateEditPage> {
               backgroundColor: Colors.blue[800],
             ),
           ),
-          TextField(
-            controller: contentController,
-            decoration: InputDecoration(labelText: 'Content'),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            child: TextField(
+              controller: contentController,
+              decoration: InputDecoration(labelText: 'Content'),
+              keyboardType: TextInputType.multiline,
+              maxLines: null,
+            ),
           ),
           ElevatedButton(
             onPressed: () {
