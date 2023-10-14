@@ -1,5 +1,6 @@
 import 'package:alcohol_sanitizing_sheet/src/diary/diary_create.dart';
 import 'package:alcohol_sanitizing_sheet/src/diary/diary_list.dart';
+import 'package:alcohol_sanitizing_sheet/src/summary/summary_create.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -31,9 +32,7 @@ class _MyDiaryHomePageState extends State<MyDiaryHomePage> {
   int _selectedIndex = 0;
   static final List<Widget> _widgetOptions = <Widget>[
     DiaryList(),
-    const Text(
-      'Index 1: Business',
-    ),
+    Summary(),
   ];
 
   void _onItemTapped(int index) {
