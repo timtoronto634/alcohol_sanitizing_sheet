@@ -12,14 +12,12 @@ class DiaryCreateEditPage extends StatefulWidget {
 }
 
 class _DiaryCreateEditPageState extends State<DiaryCreateEditPage> {
-  TextEditingController titleController = TextEditingController();
   TextEditingController contentController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     if (widget.diary != null) {
-      titleController.text = widget.diary!.title;
       contentController.text = widget.diary!.content;
     }
   }
@@ -28,16 +26,15 @@ class _DiaryCreateEditPageState extends State<DiaryCreateEditPage> {
     if (widget.diary == null) {
       // Create new Diary
       Diary newDiary = Diary(
-        title: titleController.text,
         content: contentController.text,
         date: DateTime.now(),
       );
+
       await DBHelper.insertDiary(newDiary);
     } else {
       // Update existing Diary
       Diary updatedDiary = Diary(
         id: widget.diary!.id,
-        title: titleController.text,
         content: contentController.text,
         date: widget.diary!.date,
       );
@@ -53,10 +50,6 @@ class _DiaryCreateEditPageState extends State<DiaryCreateEditPage> {
       ),
       body: Column(
         children: [
-          TextField(
-            controller: titleController,
-            decoration: InputDecoration(labelText: 'Title'),
-          ),
           TextField(
             controller: contentController,
             decoration: InputDecoration(labelText: 'Content'),

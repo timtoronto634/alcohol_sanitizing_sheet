@@ -8,7 +8,7 @@ class DBHelper {
     final dbPath = await getDatabasesPath();
     return openDatabase(join(dbPath, 'myDiary.db'), onCreate: (db, version) {
       return db.execute(
-        'CREATE TABLE diaries(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, content TEXT, date TEXT)',
+        'CREATE TABLE diaries(id INTEGER PRIMARY KEY AUTOINCREMENT, content TEXT, date TEXT)',
       );
     }, version: 1);
   }

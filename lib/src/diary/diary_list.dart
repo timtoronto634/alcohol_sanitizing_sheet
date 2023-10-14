@@ -40,8 +40,8 @@ class _DiaryListState extends State<DiaryList> {
               itemBuilder: (context, index) {
                 final diary = diaries[index];
                 return ListTile(
-                  title: Text(diary.title),
-                  subtitle: Text(diary.date.toIso8601String()),
+                  title: Text(diary.date.toIso8601String()),
+                  subtitle: Text(diary.content),
                   onTap: () {
                     // Navigate to the edit page and pass the diary as an argument
                     Navigator.push(

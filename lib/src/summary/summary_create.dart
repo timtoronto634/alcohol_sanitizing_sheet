@@ -5,7 +5,7 @@ import 'package:dart_openai/dart_openai.dart';
 class Summary extends StatelessWidget {
   void _onPressed() async {
     final diaryList = await DBHelper.fetchDiaries();
-    print(diaryList.map((diary) => diary.title));
+    print(diaryList.map((diary) => diary.content));
 
     OpenAIChatCompletionModel chatCompletion =
         await OpenAI.instance.chat.create(
