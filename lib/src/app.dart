@@ -2,11 +2,16 @@ import 'package:alcohol_sanitizing_sheet/src/diary/diary_create.dart';
 import 'package:alcohol_sanitizing_sheet/src/diary/diary_list.dart';
 import 'package:alcohol_sanitizing_sheet/src/summary/summary_create.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: GlobalMaterialLocalizations.delegates,
+      supportedLocales: const [
+        Locale('ja', 'JP'),
+      ],
       home: MyDiaryHomePage(title: 'MyDiaryHomePage'),
     );
   }
