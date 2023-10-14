@@ -77,8 +77,11 @@ class _MyDiaryHomePageState extends State<MyDiaryHomePage> {
         onPressed: () async {
           await Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => DiaryCreatePage()),
+            MaterialPageRoute(
+              builder: (context) => DiaryCreateEditPage(),
+            ),
           );
+
           _reloadData();
         },
         child: Icon(Icons.add),

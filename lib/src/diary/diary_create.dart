@@ -2,27 +2,46 @@ import 'package:alcohol_sanitizing_sheet/src/helper.dart/db_helper.dart';
 import 'package:flutter/material.dart';
 import 'diary.dart'; // Import your Diary model
 
-class DiaryCreatePage extends StatefulWidget {
+class DiaryCreateEditPage extends StatefulWidget {
+  final Diary? diary;
+
+  DiaryCreateEditPage({this.diary});
+
   @override
-  _DiaryCreatePageState createState() => _DiaryCreatePageState();
+  _DiaryCreateEditPageState createState() => _DiaryCreateEditPageState();
 }
 
-class _DiaryCreatePageState extends State<DiaryCreatePage> {
-  final _formKey = GlobalKey<FormState>();
-  String _title = '';
-  String _content = '';
-  DateTime _date = DateTime.now();
+class _DiaryCreateEditPageState extends State<DiaryCreateEditPage> {
+  TextEditingController titleController = TextEditingController();
+  TextEditingController contentController = TextEditingController();
 
-  void _saveDiary() async {
-    if (_formKey.currentState!.validate()) {
-      _formKey.currentState!.save();
+  @override
+  void initState() {
+    super.initState();
+    if (widget.diary != null) {
+      titleController.text = widget.diary!.title;
+      contentController.text = widget.diary!.content;
+    }
+  }
 
-      // Create a new Diary object and save it to the database
-      final newDiary = Diary(title: _title, content: _content, date: _date);
+  void saveDiary() async {
+    if (widget.diary == null) {
+      // Create new Diary
+      Diary newDiary = Diary(
+        title: titleController.text,
+        content: contentController.text,
+        date: DateTime.now(),
+      );
       await DBHelper.insertDiary(newDiary);
-
-      // Navigate back to the home page
-      Navigator.pop(context);
+    } else {
+      // Update existing Diary
+      Diary updatedDiary = Diary(
+        id: widget.diary!.id,
+        title: titleController.text,
+        content: contentController.text,
+        date: widget.diary!.date,
+      );
+      await DBHelper.updateDiary(updatedDiary);
     }
   }
 
@@ -30,61 +49,26 @@ class _DiaryCreatePageState extends State<DiaryCreatePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Create Diary'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.save),
-            onPressed: _saveDiary,
+        title: Text(widget.diary == null ? 'Create Diary' : 'Edit Diary'),
+      ),
+      body: Column(
+        children: [
+          TextField(
+            controller: titleController,
+            decoration: InputDecoration(labelText: 'Title'),
+          ),
+          TextField(
+            controller: contentController,
+            decoration: InputDecoration(labelText: 'Content'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              saveDiary();
+              Navigator.pop(context);
+            },
+            child: Text('Save'),
           ),
         ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Title'),
-                onSaved: (value) => _title = value ?? '',
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter a title';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Content'),
-                maxLines: 4,
-                onSaved: (value) => _content = value ?? '',
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter content';
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(height: 16.0),
-              ElevatedButton(
-                onPressed: () async {
-                  final DateTime? pickedDate = await showDatePicker(
-                    context: context,
-                    initialDate: _date,
-                    firstDate: DateTime(2000),
-                    lastDate: DateTime(2101),
-                  );
-                  if (pickedDate != null && pickedDate != _date) {
-                    setState(() {
-                      _date = pickedDate;
-                    });
-                  }
-                },
-                child: Text('Pick date'),
-              ),
-            ],
-          ),
-        ),
       ),
     );
   }
