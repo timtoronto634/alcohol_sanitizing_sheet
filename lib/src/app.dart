@@ -2,13 +2,6 @@ import 'package:alcohol_sanitizing_sheet/src/diary/diary_create.dart';
 import 'package:alcohol_sanitizing_sheet/src/diary/diary_list.dart';
 import 'package:alcohol_sanitizing_sheet/src/summary/summary_create.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-
-import 'settings/settings_controller.dart';
-import 'settings/settings_view.dart';
-
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class MyApp extends StatelessWidget {
   @override
