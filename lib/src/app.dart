@@ -24,10 +24,10 @@ class MyDiaryHomePage extends StatefulWidget {
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _MyDiaryHomePageState createState() => _MyDiaryHomePageState();
 }
 
-class _MyHomePageState extends State<MyDiaryHomePage> {
+class _MyDiaryHomePageState extends State<MyDiaryHomePage> {
   int _selectedIndex = 0;
   static final List<Widget> _widgetOptions = <Widget>[
     DiaryList(),
@@ -42,11 +42,6 @@ class _MyHomePageState extends State<MyDiaryHomePage> {
     });
   }
 
-  @override
-  State<MyDiaryHomePage> createState() => _MyDiaryHomePageState();
-}
-
-class _MyDiaryHomePageState extends State<MyDiaryHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
