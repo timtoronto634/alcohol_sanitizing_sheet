@@ -94,12 +94,12 @@ class _MyDiaryHomePageState extends State<MyDiaryHomePage> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+            icon: Icon(Icons.history_edu_outlined),
+            label: '日記を書く',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
+            icon: Icon(Icons.psychology_outlined),
+            label: 'サマる！',
           ),
         ],
         currentIndex: _selectedIndex,
