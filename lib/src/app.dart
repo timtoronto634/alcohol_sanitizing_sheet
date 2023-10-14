@@ -95,6 +95,7 @@ class _MyDiaryHomePageState extends State<MyDiaryHomePage> {
             _reloadData();
           },
           child: Icon(Icons.add),
+          backgroundColor: Colors.blue[800],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
