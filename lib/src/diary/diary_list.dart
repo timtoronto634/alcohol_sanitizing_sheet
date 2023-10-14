@@ -19,6 +19,13 @@ class _DiaryListState extends State<DiaryList> {
     widget.onReload();
   }
 
+  Widget noDiaryMessageWidget = const Center(
+    child: Padding(
+      padding: EdgeInsets.all(8.0),
+      child: Text('No diary yet. create diaries!'),
+    ),
+  );
+
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
@@ -27,11 +34,11 @@ class _DiaryListState extends State<DiaryList> {
         future: widget.diaryList, // Use the list passed from the parent
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator(); // Show a loading spinner
+            return const CircularProgressIndicator(); // Show a loading spinner
           } else if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Text('No diaries found');
+            return noDiaryMessageWidget;
           } else {
             List<Diary> diaries = snapshot.data!;
 
