@@ -13,7 +13,7 @@ class DBHelper {
     }, version: 1);
   }
 
-  // Method to insert a new diary entry (Now static)
+  // Method to insert a new diary entry
   static Future<void> insertDiary(Diary diary) async {
     print("insertDiary");
     final db = await DBHelper.database();
@@ -21,7 +21,20 @@ class DBHelper {
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
-  // Method to fetch all diaries (Now static)
+  // Method to update an existing diary entry
+  static Future<void> updateDiary(Diary diary) async {
+    print("updateDiary");
+    final db = await DBHelper.database();
+
+    await db.update(
+      'diaries',
+      diary.toMap(),
+      where: 'id = ?',
+      whereArgs: [diary.id],
+    );
+  }
+
+  // Method to fetch all diaries
   static Future<List<Diary>> fetchDiaries() async {
     print("fetchDiaries");
     final db = await DBHelper.database();
@@ -29,5 +42,3 @@ class DBHelper {
     return result.map((e) => Diary.fromMap(e)).toList();
   }
 }
-
-// Update and delete methods go here

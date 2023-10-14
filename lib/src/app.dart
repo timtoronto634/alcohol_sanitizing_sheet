@@ -1,6 +1,8 @@
+import 'package:alcohol_sanitizing_sheet/src/diary/diary.dart';
 import 'package:alcohol_sanitizing_sheet/src/diary/diary_create.dart';
 import 'package:alcohol_sanitizing_sheet/src/diary/diary_list.dart';
 import 'package:alcohol_sanitizing_sheet/src/summary/summary_create.dart';
+import 'package:alcohol_sanitizing_sheet/src/helper.dart/db_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -28,14 +30,36 @@ class MyDiaryHomePage extends StatefulWidget {
 
 class _MyDiaryHomePageState extends State<MyDiaryHomePage> {
   int _selectedIndex = 0;
-  static final List<Widget> _widgetOptions = <Widget>[
-    DiaryList(),
-    Summary(),
-  ];
+
+  List<Widget> get widgetOptions => [
+        DiaryList(
+          diaryList: diaryList,
+          onReload: _reloadData,
+        ),
+        Summary(),
+      ];
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+    });
+  }
+
+  late Future<List<Diary>> diaryList;
+
+  Future<List<Diary>> fetchDiariesFromDB() async {
+    return await DBHelper.fetchDiaries();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    diaryList = fetchDiariesFromDB();
+  }
+
+  Future<void> _reloadData() async {
+    setState(() {
+      diaryList = fetchDiariesFromDB();
     });
   }
 
@@ -52,14 +76,18 @@ class _MyDiaryHomePageState extends State<MyDiaryHomePage> {
         ),
         backgroundColor: Color(0xFFFFFFFF),
       ),
-      body: _widgetOptions
+      body: widgetOptions
           .elementAt(_selectedIndex), // This will be the list of diaries
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
+        onPressed: () async {
+          await Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => DiaryCreatePage()),
+            MaterialPageRoute(
+              builder: (context) => DiaryCreateEditPage(),
+            ),
           );
+
+          _reloadData();
         },
         child: Icon(Icons.add),
       ),
