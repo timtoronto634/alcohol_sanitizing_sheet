@@ -16,13 +16,14 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   sqflite: ^2.3.0
-  flutter_native_splash: ^2.3.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^2.0.0
+  flutter_native_splash: ^2.3.3
+  flutter_launcher_icons: ^0.13.1
 
 flutter:
   uses-material-design: true
@@ -35,7 +36,15 @@ flutter:
     - assets/images/
     - .env
 
+flutter_icons:
+  android: true
+  ios: true
+  image_path: assets/images/symbol.png
+
 flutter_native_splash:
+  # 下記のコマンドで生成
+  # flutter pub get
+  # flutter pub run flutter_native_splash:create
   color: "#ffffff"
   image: assets/images/logo.png
   android: true
