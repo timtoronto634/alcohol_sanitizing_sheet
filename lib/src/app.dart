@@ -103,7 +103,7 @@ class _MyDiaryHomePageState extends State<MyDiaryHomePage> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Colors.blue[800],
         onTap: _onItemTapped,
       ),
     );
