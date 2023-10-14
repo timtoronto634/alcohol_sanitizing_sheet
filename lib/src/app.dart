@@ -81,19 +81,21 @@ class _MyDiaryHomePageState extends State<MyDiaryHomePage> {
       ),
       body: widgetOptions
           .elementAt(_selectedIndex), // This will be the list of diaries
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          await Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => DiaryCreateEditPage(),
-            ),
-          );
+      floatingActionButton: Visibility(
+        visible: _selectedIndex == 0,
+        child: FloatingActionButton(
+          onPressed: () async {
+            await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DiaryCreateEditPage(),
+              ),
+            );
 
-          _reloadData();
-        },
-        child: Icon(Icons.add),
-        backgroundColor: Colors.blue[800],
+            _reloadData();
+          },
+          child: Icon(Icons.add),
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
