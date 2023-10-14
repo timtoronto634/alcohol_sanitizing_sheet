@@ -13,12 +13,14 @@ class DiaryCreateEditPage extends StatefulWidget {
 
 class _DiaryCreateEditPageState extends State<DiaryCreateEditPage> {
   TextEditingController contentController = TextEditingController();
+  DateTime _date = DateTime.now();
 
   @override
   void initState() {
     super.initState();
     if (widget.diary != null) {
       contentController.text = widget.diary!.content;
+      _date = widget.diary!.date;
     }
   }
 
@@ -27,7 +29,7 @@ class _DiaryCreateEditPageState extends State<DiaryCreateEditPage> {
       // Create new Diary
       Diary newDiary = Diary(
         content: contentController.text,
-        date: DateTime.now(),
+        date: _date,
       );
 
       await DBHelper.insertDiary(newDiary);
@@ -36,7 +38,7 @@ class _DiaryCreateEditPageState extends State<DiaryCreateEditPage> {
       Diary updatedDiary = Diary(
         id: widget.diary!.id,
         content: contentController.text,
-        date: widget.diary!.date,
+        date: _date,
       );
       await DBHelper.updateDiary(updatedDiary);
     }
@@ -58,6 +60,22 @@ class _DiaryCreateEditPageState extends State<DiaryCreateEditPage> {
       ),
       body: Column(
         children: [
+          ElevatedButton(
+            onPressed: () async {
+              final DateTime? pickedDate = await showDatePicker(
+                context: context,
+                initialDate: _date,
+                firstDate: DateTime(2000),
+                lastDate: DateTime(2101),
+              );
+              if (pickedDate != null && pickedDate != _date) {
+                setState(() {
+                  _date = pickedDate;
+                });
+              }
+            },
+            child: Text('Pick date'),
+          ),
           TextField(
             controller: contentController,
             decoration: InputDecoration(labelText: 'Content'),
