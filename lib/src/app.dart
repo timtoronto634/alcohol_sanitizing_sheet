@@ -10,6 +10,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        primaryColor: Colors.blue[800],
+      ),
       localizationsDelegates: GlobalMaterialLocalizations.delegates,
       supportedLocales: const [
         Locale('ja', 'JP'),
@@ -90,6 +93,7 @@ class _MyDiaryHomePageState extends State<MyDiaryHomePage> {
           _reloadData();
         },
         child: Icon(Icons.add),
+        backgroundColor: Colors.blue[800],
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[

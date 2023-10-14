@@ -26,6 +26,9 @@ class Summary extends StatelessWidget {
       child: ElevatedButton(
         onPressed: _onPressed,
         child: Text('要約する'),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.blue[800],
+        ),
       ),
     );
   }

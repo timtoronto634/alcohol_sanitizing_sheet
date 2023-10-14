@@ -60,6 +60,9 @@ class _DiaryCreateEditPageState extends State<DiaryCreateEditPage> {
               Navigator.pop(context);
             },
             child: Text('Save'),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.blue[800],
+            ),
           ),
         ],
       ),
