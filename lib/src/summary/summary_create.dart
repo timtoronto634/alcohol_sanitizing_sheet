@@ -1,8 +1,12 @@
+import 'package:alcohol_sanitizing_sheet/src/helper.dart/db_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:dart_openai/dart_openai.dart';
 
 class Summary extends StatelessWidget {
   void _onPressed() async {
+    final diaryList = await DBHelper.fetchDiaries();
+    print(diaryList.map((diary) => diary.title));
+
     OpenAIChatCompletionModel chatCompletion =
         await OpenAI.instance.chat.create(
       model: "gpt-3.5-turbo",
