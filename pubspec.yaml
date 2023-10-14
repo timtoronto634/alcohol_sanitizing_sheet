@@ -2,12 +2,12 @@ name: alcohol_sanitizing_sheet
 description: A new Flutter project.
 
 # Prevent accidental publishing to pub.dev.
-publish_to: 'none'
+publish_to: "none"
 
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.1.3 <4.0.0'
+  sdk: ">=3.1.3 <4.0.0"
 
 dependencies:
   dart_openai: ^4.0.0
@@ -23,6 +23,8 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^2.0.0
+  flutter_native_splash: ^2.3.3
+  flutter_launcher_icons: ^0.13.1
 
 flutter:
   uses-material-design: true
@@ -34,3 +36,18 @@ flutter:
     # Add assets from the images directory to the application.
     - assets/images/
     - .env
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: assets/images/symbol.png
+
+flutter_native_splash:
+  # 下記のコマンドで生成
+  # flutter pub get
+  # flutter pub run flutter_native_splash:create
+  color: "#ffffff"
+  image: assets/images/logo.png
+  android: true
+  ios: true
+  fullscreen: true
