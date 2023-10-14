@@ -7,6 +7,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'settings/settings_controller.dart';
 import 'settings/settings_view.dart';
 
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -40,6 +42,11 @@ class _MyHomePageState extends State<MyDiaryHomePage> {
     });
   }
 
+  @override
+  State<MyDiaryHomePage> createState() => _MyDiaryHomePageState();
+}
+
+class _MyDiaryHomePageState extends State<MyDiaryHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
