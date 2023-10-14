@@ -1,4 +1,5 @@
 import 'package:alcohol_sanitizing_sheet/src/diary/diary.dart';
+import 'package:alcohol_sanitizing_sheet/src/diary/diary_create.dart';
 import 'package:alcohol_sanitizing_sheet/src/helper.dart/db_helper.dart';
 import 'package:flutter/material.dart';
 
@@ -42,7 +43,18 @@ class _DiaryListState extends State<DiaryList> {
                   title: Text(diary.title),
                   subtitle: Text(diary.date.toIso8601String()),
                   onTap: () {
-                    // Navigate to diary details page
+                    // Navigate to the edit page and pass the diary as an argument
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DiaryCreateEditPage(diary: diary),
+                      ),
+                    ).then((value) {
+                      // Reload the data when coming back to this page
+                      if (value == true) {
+                        _reloadData();
+                      }
+                    });
                   },
                 );
               },
