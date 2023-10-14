@@ -2,6 +2,7 @@ import 'package:alcohol_sanitizing_sheet/src/diary/diary.dart';
 import 'package:alcohol_sanitizing_sheet/src/diary/diary_create.dart';
 import 'package:alcohol_sanitizing_sheet/src/helper.dart/db_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class DiaryList extends StatefulWidget {
   final Future<List<Diary>> diaryList;
@@ -26,6 +27,8 @@ class _DiaryListState extends State<DiaryList> {
     ),
   );
 
+  final formatter = DateFormat('yyyy年MM月dd日', 'ja_JP');
+
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
@@ -47,7 +50,7 @@ class _DiaryListState extends State<DiaryList> {
               itemBuilder: (context, index) {
                 final diary = diaries[index];
                 return ListTile(
-                  title: Text(diary.date.toIso8601String()),
+                  title: Text(formatter.format(diary.date)),
                   subtitle: Text(diary.content),
                   onTap: () {
                     // Navigate to the edit page and pass the diary as an argument
