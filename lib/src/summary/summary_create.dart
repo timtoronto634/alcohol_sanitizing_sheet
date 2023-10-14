@@ -69,49 +69,57 @@ class SummaryState extends State<Summary> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: [
-          ElevatedButton(
-              onPressed: _onPressed,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue[800],
-              ),
-              child: const Text('要約する')),
-          // Text(_summary),
-          Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/fuuka_arima.png'),
-                // fit: BoxFit.cover,
-              ),
-            ),
-            constraints: const BoxConstraints(
-              minHeight: 650,
-            ),
-            child: Container(
-              width: 450,
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/images/onsen_background.jpeg'),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: Center(
+        child: Column(
+          children: [
+            ElevatedButton(
+                onPressed: _onPressed,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue[800],
+                ),
+                child: const Text('要約する')),
+            // Text(_summary),
+            Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/images/box.png'),
-                  alignment: Alignment.bottomCenter,
+                  image: AssetImage('assets/images/fuuka_arima.png'),
+                  // fit: BoxFit.cover,
                 ),
               ),
-              padding: const EdgeInsets.only(
-                  top: 260, bottom: 18, left: 32, right: 32),
-              constraints: const BoxConstraints(),
+              constraints: const BoxConstraints(
+                minHeight: 650,
+              ),
               child: Container(
-                height: 300,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  child: _isLoading
-                      ? const CircularProgressIndicator()
-                      : Text(_summary),
+                width: 450,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/box.png'),
+                    alignment: Alignment.bottomCenter,
+                  ),
+                ),
+                padding: const EdgeInsets.only(
+                    top: 260, bottom: 18, left: 32, right: 32),
+                constraints: const BoxConstraints(),
+                child: Container(
+                  height: 300,
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: _isLoading
+                        ? const CircularProgressIndicator()
+                        : Text(_summary),
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
