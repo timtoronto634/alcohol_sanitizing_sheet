@@ -46,7 +46,15 @@ class _DiaryCreateEditPageState extends State<DiaryCreateEditPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.diary == null ? 'Create Diary' : 'Edit Diary'),
+        title: Text(widget.diary == null ? '日記を書く' : '日記を編集する'),
+        backgroundColor: Color(0xFFFFFFFF),
+        titleTextStyle: TextStyle(
+          color: Colors.blue[900],
+          fontSize: 20,
+        ),
+        iconTheme: IconThemeData(
+          color: Colors.blue[900],
+        ),
       ),
       body: Column(
         children: [
