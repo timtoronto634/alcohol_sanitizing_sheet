@@ -19,6 +19,7 @@ dependencies:
   sqflite: ^2.3.0
   intl: ^0.18.0
   audioplayers: ^5.2.0
+  just_audio: ^0.9.35
 dev_dependencies:
   flutter_test:
     sdk: flutter
