@@ -85,7 +85,7 @@ class SummaryState extends State<Summary> {
           child: Image.asset('assets/images/fuuka_arima.png'),
         )),
         Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -97,6 +97,7 @@ class SummaryState extends State<Summary> {
                 ),
               ],
             ),
+            SizedBox(height: 32),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: MessageForm(),
