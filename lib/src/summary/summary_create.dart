@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:alcohol_sanitizing_sheet/src/helper.dart/db_helper.dart';
 import 'package:alcohol_sanitizing_sheet/src/summary/dialog_create.dart';
 import 'package:alcohol_sanitizing_sheet/src/summary/reply_message_box.dart';
+import 'package:alcohol_sanitizing_sheet/src/summary/summary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:dart_openai/dart_openai.dart';
 import 'package:just_audio/just_audio.dart';
@@ -92,23 +93,7 @@ class SummaryState extends State<Summary> {
                 ReplyMessageBox(isLoading: _isLoading, summary: _summary),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    ElevatedButton(
-                        onPressed: _onPressed,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              const Color.fromRGBO(219, 171, 188, 1),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(1000),
-                          ),
-                        ),
-                        child: const Text(
-                          '僕の強みを聞いてみる',
-                          style: TextStyle(
-                              color: Color.fromRGBO(50, 50, 50, 1),
-                              fontWeight: FontWeight.bold),
-                        )),
-                  ],
+                  children: [DoSummaryButton(onPressed: _onPressed)],
                 ),
               ],
             ),
