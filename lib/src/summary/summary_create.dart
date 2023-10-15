@@ -15,7 +15,7 @@ class Summary extends StatefulWidget {
 }
 
 class SummaryState extends State<Summary> {
-  String _message = '';
+  String _message = '仕事お疲れ様、今日はどんな感じだった？';
   bool _isLoading = false;
 
   void changeMessage(String message) {
