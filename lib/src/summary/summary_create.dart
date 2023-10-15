@@ -15,8 +15,14 @@ class Summary extends StatefulWidget {
 }
 
 class SummaryState extends State<Summary> {
-  String _summary = '';
+  String _message = '';
   bool _isLoading = false;
+
+  void changeMessage(String message) {
+    setState(() {
+      _message = message;
+    });
+  }
 
   void _onPressed() async {
     setState(() {
@@ -47,7 +53,7 @@ class SummaryState extends State<Summary> {
     final messageContent = chatCompletion.choices.first.message.content;
     talk(messageContent, speakerName: "aoi_emo", speed: 3.0);
     setState(() {
-      _summary = messageContent;
+      changeMessage(messageContent);
       _isLoading = false;
     });
   }
@@ -90,7 +96,7 @@ class SummaryState extends State<Summary> {
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                ReplyMessageBox(isLoading: _isLoading, summary: _summary),
+                ReplyMessageBox(isLoading: _isLoading, message: _message),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [DoSummaryButton(onPressed: _onPressed)],
@@ -99,8 +105,8 @@ class SummaryState extends State<Summary> {
             ),
             SizedBox(height: 32),
             Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: MessageForm(),
+              padding: const EdgeInsets.all(8.0),
+              child: MessageForm(onMessageSend: changeMessage),
             )
           ],
         ),
