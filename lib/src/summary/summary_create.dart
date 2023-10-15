@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:alcohol_sanitizing_sheet/src/diary/diary.dart';
 import 'package:alcohol_sanitizing_sheet/src/helper.dart/db_helper.dart';
 import 'package:alcohol_sanitizing_sheet/src/summary/dialog_create.dart';
 import 'package:alcohol_sanitizing_sheet/src/summary/reply_message_box.dart';
@@ -21,6 +22,37 @@ class SummaryState extends State<Summary> {
   void changeMessage(String message) {
     setState(() {
       _message = message;
+    });
+  }
+
+  void _onChat(Diary diary) async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    OpenAIChatCompletionModel chatCompletion =
+        await OpenAI.instance.chat.create(
+      model: "gpt-3.5-turbo",
+      messages: [
+        const OpenAIChatCompletionChoiceMessageModel(
+          content:
+              "最終的に質問者の強みに気づかせるようなコーチとして返答してください。返答は短く、頷きや、さらに良さを引き出すような質問にしてください。口調は可愛い女の子風にしてください。",
+          role: OpenAIChatMessageRole.system,
+        ),
+        OpenAIChatCompletionChoiceMessageModel(
+          content: diary.content,
+          role: OpenAIChatMessageRole.user,
+        ),
+      ],
+    );
+    print(chatCompletion.usage);
+    final messageContent = chatCompletion.choices.first.message.content;
+    diary.content = diary.content + messageContent;
+    await DBHelper.insertDiary(diary);
+    talk(messageContent, speakerName: "aoi_emo", speed: 3.0);
+    setState(() {
+      changeMessage(messageContent);
+      _isLoading = false;
     });
   }
 
@@ -111,7 +143,7 @@ class SummaryState extends State<Summary> {
                 left: 8,
                 right: 8,
               ),
-              child: MessageForm(onMessageSend: changeMessage),
+              child: MessageForm(onMessageSend: _onChat),
             )
           ],
         ),

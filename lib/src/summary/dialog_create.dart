@@ -3,7 +3,7 @@ import 'package:alcohol_sanitizing_sheet/src/helper.dart/db_helper.dart';
 import 'package:alcohol_sanitizing_sheet/src/diary/diary.dart';
 
 class MessageForm extends StatefulWidget {
-  final Function(String) onMessageSend;
+  final Function(Diary) onMessageSend;
 
   MessageForm({required this.onMessageSend});
 
@@ -20,8 +20,7 @@ class _MessageFormState extends State<MessageForm> {
       date: DateTime.now(),
     );
 
-    await DBHelper.insertDiary(newDiary);
-    widget.onMessageSend("ありがと〜！");
+    widget.onMessageSend(newDiary);
   }
 
   @override

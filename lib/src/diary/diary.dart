@@ -1,6 +1,6 @@
 class Diary {
   final int? id;
-  final String content;
+  String content;
   final DateTime date;
 
   Diary({this.id, required this.content, required this.date});
