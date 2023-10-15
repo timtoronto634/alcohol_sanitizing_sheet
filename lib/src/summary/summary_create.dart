@@ -71,58 +71,47 @@ class SummaryState extends State<Summary> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('assets/images/onsen_background.jpeg'),
+    return Stack(
+      children: [
+        SizedBox.expand(
+            child: FittedBox(
           fit: BoxFit.cover,
-        ),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Column(
-            children: [
-              Container(
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/images/fuuka_arima.png'),
-                    // fit: BoxFit.cover,
-                  ),
-                ),
-                constraints: const BoxConstraints(
-                  maxHeight: 300,
-                ),
-                child:
-                    ReplyMessageBox(isLoading: _isLoading, summary: _summary),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  ElevatedButton(
-                      onPressed: _onPressed,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromRGBO(219, 171, 188, 1),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(1000),
-                        ),
+          child: Image.asset('assets/images/onsen_background.jpeg'),
+        )),
+        SizedBox.expand(
+            child: FittedBox(
+          fit: BoxFit.contain,
+          child: Image.asset('assets/images/fuuka_arima.png'),
+        )),
+        Column(
+          children: [
+            ReplyMessageBox(isLoading: _isLoading, summary: _summary),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                ElevatedButton(
+                    onPressed: _onPressed,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromRGBO(219, 171, 188, 1),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(1000),
                       ),
-                      child: const Text(
-                        '僕の強みを聞いてみる',
-                        style: TextStyle(
-                            color: Color.fromRGBO(50, 50, 50, 1),
-                            fontWeight: FontWeight.bold),
-                      )),
-                ],
-              )
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: MessageForm(),
-          ),
-        ],
-      ),
+                    ),
+                    child: const Text(
+                      '僕の強みを聞いてみる',
+                      style: TextStyle(
+                          color: Color.fromRGBO(50, 50, 50, 1),
+                          fontWeight: FontWeight.bold),
+                    )),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: MessageForm(),
+            )
+          ],
+        ),
+      ],
     );
   }
 }
