@@ -41,6 +41,9 @@ flutter:
     - assets/audio/sample.mp3
 
 flutter_icons:
+  # 下記のコマンドで生成
+  # flutter pub get
+  # flutter pub run flutter_launcher_icons:main
   android: true
   ios: true
   image_path: assets/images/symbol.png
