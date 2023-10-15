@@ -77,7 +77,7 @@ class SummaryState extends State<Summary> {
         SizedBox.expand(
             child: FittedBox(
           fit: BoxFit.cover,
-          child: Image.asset('assets/images/onsen_background.jpeg'),
+          child: Image.asset('assets/images/onsen_background.png'),
         )),
         SizedBox.expand(
             child: FittedBox(
