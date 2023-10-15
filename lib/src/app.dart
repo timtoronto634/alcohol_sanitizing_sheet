@@ -32,8 +32,6 @@ class MyDiaryHomePage extends StatefulWidget {
 }
 
 class _MyDiaryHomePageState extends State<MyDiaryHomePage> {
-  int _selectedIndex = 0;
-
   List<Widget> get widgetOptions => [
         DiaryList(
           diaryList: diaryList,
@@ -41,12 +39,6 @@ class _MyDiaryHomePageState extends State<MyDiaryHomePage> {
         ),
         Summary(),
       ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
 
   late Future<List<Diary>> diaryList;
 
@@ -69,10 +61,8 @@ class _MyDiaryHomePageState extends State<MyDiaryHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: widgetOptions
-          .elementAt(_selectedIndex), // This will be the list of diaries
+      body: Summary(), // This will be the list of diaries
       floatingActionButton: Visibility(
-        visible: _selectedIndex == 0,
         child: FloatingActionButton(
           onPressed: () async {
             await Navigator.push(
@@ -84,24 +74,9 @@ class _MyDiaryHomePageState extends State<MyDiaryHomePage> {
 
             _reloadData();
           },
-          child: Icon(Icons.add),
           backgroundColor: Colors.blue[800],
+          child: const Icon(Icons.add),
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.history_edu_outlined),
-            label: '日記を書く',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.psychology_outlined),
-            label: 'サマる！',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue[800],
-        onTap: _onItemTapped,
       ),
     );
   }

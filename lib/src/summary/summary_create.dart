@@ -93,7 +93,6 @@ class SummaryState extends State<Summary> {
                       color: Color.fromRGBO(50, 50, 50, 1),
                       fontWeight: FontWeight.bold),
                 )),
-            // Text(_summary),
             Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
