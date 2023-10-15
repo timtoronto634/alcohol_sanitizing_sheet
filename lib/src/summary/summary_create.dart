@@ -84,25 +84,32 @@ class SummaryState extends State<Summary> {
           child: Image.asset('assets/images/fuuka_arima.png'),
         )),
         Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            ReplyMessageBox(isLoading: _isLoading, summary: _summary),
-            Row(
+            Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ElevatedButton(
-                    onPressed: _onPressed,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromRGBO(219, 171, 188, 1),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(1000),
-                      ),
-                    ),
-                    child: const Text(
-                      '僕の強みを聞いてみる',
-                      style: TextStyle(
-                          color: Color.fromRGBO(50, 50, 50, 1),
-                          fontWeight: FontWeight.bold),
-                    )),
+              children: <Widget>[
+                ReplyMessageBox(isLoading: _isLoading, summary: _summary),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    ElevatedButton(
+                        onPressed: _onPressed,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              const Color.fromRGBO(219, 171, 188, 1),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(1000),
+                          ),
+                        ),
+                        child: const Text(
+                          '僕の強みを聞いてみる',
+                          style: TextStyle(
+                              color: Color.fromRGBO(50, 50, 50, 1),
+                              fontWeight: FontWeight.bold),
+                        )),
+                  ],
+                ),
               ],
             ),
             Padding(
