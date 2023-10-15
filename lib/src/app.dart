@@ -62,22 +62,6 @@ class _MyDiaryHomePageState extends State<MyDiaryHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Summary(), // This will be the list of diaries
-      floatingActionButton: Visibility(
-        child: FloatingActionButton(
-          onPressed: () async {
-            await Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => DiaryCreateEditPage(),
-              ),
-            );
-
-            _reloadData();
-          },
-          backgroundColor: Colors.blue[800],
-          child: const Icon(Icons.add),
-        ),
-      ),
     );
   }
 }
