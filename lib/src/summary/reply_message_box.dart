@@ -8,8 +8,8 @@ class ReplyMessageBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return (Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+    return (Visibility(
+        visible: MediaQuery.of(context).viewInsets.bottom > 100,
         child: Container(
             decoration: BoxDecoration(
                 border: Border.all(
