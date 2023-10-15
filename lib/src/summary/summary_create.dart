@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:alcohol_sanitizing_sheet/src/helper.dart/db_helper.dart';
 import 'package:alcohol_sanitizing_sheet/src/summary/dialog_create.dart';
+import 'package:alcohol_sanitizing_sheet/src/summary/reply_message_box.dart';
 import 'package:flutter/material.dart';
 import 'package:dart_openai/dart_openai.dart';
 import 'package:just_audio/just_audio.dart';
@@ -92,27 +93,8 @@ class SummaryState extends State<Summary> {
                 constraints: const BoxConstraints(
                   maxHeight: 300,
                 ),
-                child: Container(
-                  width: 450,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/box.png'),
-                      alignment: Alignment.bottomCenter,
-                    ),
-                  ),
-                  padding: const EdgeInsets.only(
-                      top: 260, bottom: 18, left: 32, right: 32),
-                  constraints: const BoxConstraints(),
-                  child: Container(
-                    height: 300,
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.vertical,
-                      child: _isLoading
-                          ? const CircularProgressIndicator()
-                          : Text(_summary),
-                    ),
-                  ),
-                ),
+                child:
+                    ReplyMessageBox(isLoading: _isLoading, summary: _summary),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
