@@ -77,8 +77,8 @@ class _DiaryListState extends State<DiaryList> {
           },
         ),
       )),
-      Container(
-          padding: EdgeInsets.symmetric(horizontal: 16.0), child: MessageForm())
+      // Container(
+      // padding: EdgeInsets.symmetric(horizontal: 16.0), child: MessageForm())
     ]);
   }
 }

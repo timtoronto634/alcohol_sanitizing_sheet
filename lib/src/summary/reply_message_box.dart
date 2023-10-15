@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ReplyMessageBox extends StatelessWidget {
-  final String summary;
+  final String message;
   final bool isLoading;
 
-  const ReplyMessageBox({required this.summary, required this.isLoading});
+  const ReplyMessageBox({required this.message, required this.isLoading});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class ReplyMessageBox extends StatelessWidget {
                 scrollDirection: Axis.vertical,
                 child: isLoading
                     ? const CircularProgressIndicator()
-                    : Text(summary),
+                    : Text(message),
               ),
             ))));
   }
