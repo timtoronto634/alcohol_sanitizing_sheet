@@ -7,18 +7,19 @@ class DoSummaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return ElevatedButton.icon(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         backgroundColor: const Color.fromRGBO(219, 171, 188, 1),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(1000),
         ),
+        foregroundColor: const Color.fromRGBO(50, 50, 50, 1),
       ),
-      child: const Text(
-        '僕の強みを聞いてみる',
+      icon: const Icon(Icons.star),
+      label: const Text(
+        '「ぼく」のアピールポイントを聞いてみる',
         style: TextStyle(
-          color: Color.fromRGBO(50, 50, 50, 1),
           fontWeight: FontWeight.bold,
         ),
       ),
