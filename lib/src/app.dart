@@ -61,6 +61,7 @@ class _MyDiaryHomePageState extends State<MyDiaryHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Summary(), // This will be the list of diaries
     );
   }

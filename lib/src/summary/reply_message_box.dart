@@ -8,25 +8,22 @@ class ReplyMessageBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return (Visibility(
-        visible: MediaQuery.of(context).viewInsets.bottom > 100,
-        child: Container(
-            decoration: BoxDecoration(
-                border: Border.all(
-                  color: Color(0xFF3662E3), //色
-                  width: 4, //太さ
-                ),
-                borderRadius: BorderRadius.circular(10.0),
-                color: Colors.white.withOpacity(0.9)),
-            child: SizedBox(
-              width: double.infinity,
-              height: 300,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: isLoading
-                    ? const CircularProgressIndicator()
-                    : Text(message),
-              ),
-            ))));
+    return (Container(
+        decoration: BoxDecoration(
+            border: Border.all(
+              color: Color(0xFF3662E3), //色
+              width: 4, //太さ
+            ),
+            borderRadius: BorderRadius.circular(10.0),
+            color: Colors.white.withOpacity(0.9)),
+        child: SizedBox(
+          width: double.infinity,
+          height: 300 - MediaQuery.of(context).viewInsets.bottom,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child:
+                isLoading ? const CircularProgressIndicator() : Text(message),
+          ),
+        )));
   }
 }

@@ -144,7 +144,10 @@ class SummaryState extends State<Summary> {
                 right: 8,
               ),
               child: MessageForm(onMessageSend: _onChat),
-            )
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).viewInsets.bottom,
+            ),
           ],
         ),
       ],
