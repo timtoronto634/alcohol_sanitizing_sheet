@@ -9,22 +9,24 @@ class ReplyMessageBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return (Container(
-      // width: 200,
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('assets/images/box.png'),
-          alignment: Alignment.bottomCenter,
-        ),
-      ),
-      padding: const EdgeInsets.only(top: 20, bottom: 18, left: 32, right: 32),
-      constraints: const BoxConstraints(),
-      child: Container(
-        height: 200,
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: isLoading ? const CircularProgressIndicator() : Text(summary),
-        ),
-      ),
-    ));
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: Container(
+            decoration: BoxDecoration(
+                border: Border.all(
+                  color: Color(0xFF3662E3), //色
+                  width: 4, //太さ
+                ),
+                borderRadius: BorderRadius.circular(10.0),
+                color: Colors.white.withOpacity(0.9)),
+            child: SizedBox(
+              width: double.infinity,
+              height: 300,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: isLoading
+                    ? const CircularProgressIndicator()
+                    : Text(summary),
+              ),
+            ))));
   }
 }
