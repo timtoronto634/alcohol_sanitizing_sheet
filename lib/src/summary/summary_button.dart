@@ -18,7 +18,7 @@ class DoSummaryButton extends StatelessWidget {
       ),
       icon: const Icon(Icons.star),
       label: const Text(
-        '「ぼく」のアピールポイントを聞いてみる',
+        '「ぼく」の魅力を教えて！',
         style: TextStyle(
           fontWeight: FontWeight.bold,
         ),
