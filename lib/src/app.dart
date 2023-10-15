@@ -69,16 +69,6 @@ class _MyDiaryHomePageState extends State<MyDiaryHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Container(
-          width: 144,
-          child: Image.asset(
-            'assets/images/logotype.png',
-            fit: BoxFit.scaleDown,
-          ),
-        ),
-        backgroundColor: Color(0xFFFFFFFF),
-      ),
       body: widgetOptions
           .elementAt(_selectedIndex), // This will be the list of diaries
       floatingActionButton: Visibility(
