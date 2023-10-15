@@ -34,6 +34,8 @@ class _MessageFormState extends State<MessageForm> {
             decoration: const InputDecoration(
               hintText: 'メッセージを入力してください',
               border: OutlineInputBorder(),
+              filled: true,
+              fillColor: Colors.white,
             ),
           ),
         ),
