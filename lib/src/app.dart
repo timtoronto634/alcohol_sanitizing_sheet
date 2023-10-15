@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: const [
         Locale('ja', 'JP'),
       ],
-      home: MyDiaryHomePage(title: 'MyDiaryHomePage'),
+      home: MyDiaryHomePage(title: 'DiaP'),
     );
   }
 }
@@ -32,87 +32,67 @@ class MyDiaryHomePage extends StatefulWidget {
 }
 
 class _MyDiaryHomePageState extends State<MyDiaryHomePage> {
-  int _selectedIndex = 0;
-
-  List<Widget> get widgetOptions => [
-        DiaryList(
-          diaryList: diaryList,
-          onReload: _reloadData,
-        ),
-        Summary(),
-      ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  late Future<List<Diary>> diaryList;
-
-  Future<List<Diary>> fetchDiariesFromDB() async {
-    return await DBHelper.fetchDiaries();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    diaryList = fetchDiariesFromDB();
-  }
-
-  Future<void> _reloadData() async {
-    setState(() {
-      diaryList = fetchDiariesFromDB();
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Container(
-          width: 144,
-          child: Image.asset(
-            'assets/images/logotype.png',
-            fit: BoxFit.scaleDown,
-          ),
+        body: Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/images/fuuka_arima.png'),
         ),
-        backgroundColor: Color(0xFFFFFFFF),
       ),
-      body: widgetOptions
-          .elementAt(_selectedIndex), // This will be the list of diaries
-      floatingActionButton: Visibility(
-        visible: _selectedIndex == 0,
-        child: FloatingActionButton(
-          onPressed: () async {
-            await Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => DiaryCreateEditPage(),
+      constraints: const BoxConstraints(
+        minHeight: 650,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              Center(
+                child: Container(
+                  padding: const EdgeInsets.all(16),
+                  color: Colors.white.withOpacity(0.5),
+                  child: const Text(
+                    'The girl in the background is talking',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
               ),
-            );
-
-            _reloadData();
-          },
-          child: Icon(Icons.add),
-          backgroundColor: Colors.blue[800],
-        ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.history_edu_outlined),
-            label: '日記を書く',
+              // Buttons below the rectangle
+              Align(
+                alignment: const Alignment(0, 0.7),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: Text('Button 1'),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: Text('Button 2'),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.psychology_outlined),
-            label: 'サマる！',
+          // Chat editor at the bottom
+          const Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Type yoddur message',
+                ),
+              ),
+            ),
           ),
         ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue[800],
-        onTap: _onItemTapped,
       ),
-    );
+    ));
   }
 }
