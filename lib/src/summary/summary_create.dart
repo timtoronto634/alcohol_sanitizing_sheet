@@ -99,7 +99,7 @@ class SummaryState extends State<Summary> {
             ),
             SizedBox(height: 32),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(16.0),
               child: MessageForm(),
             )
           ],
