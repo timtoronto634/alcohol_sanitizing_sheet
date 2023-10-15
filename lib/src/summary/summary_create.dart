@@ -71,12 +71,11 @@ class SummaryState extends State<Summary> {
       messages: [
         const OpenAIChatCompletionChoiceMessageModel(
           content:
-              "Please answer the following questions in a cute tone of voice in Japanese.",
+              "次に与えられたメッセージの記録から、読み取れるアピールポイントや強みについて3~5点返答してください。返答は口調は可愛い女の子風にしてください。",
           role: OpenAIChatMessageRole.system,
         ),
         OpenAIChatCompletionChoiceMessageModel(
-          content:
-              "以下の文章は私の1週間分の日記なんだ。日記から読み取れる私のアピールポイントを3~5点教えてね。\n\n$diaryJoinString",
+          content: diaryJoinString,
           role: OpenAIChatMessageRole.user,
         ),
       ],
